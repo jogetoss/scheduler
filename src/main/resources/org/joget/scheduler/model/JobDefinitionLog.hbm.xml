@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class entity-name="JobDefinitionLog" name="org.joget.scheduler.model.JobDefinitionLog" table="sch_job_log">
+        <id column="id" name="id" type="string"/>
+        <property column="jobId" name="jobId" type="string"/>
+        <property column="message" name="message" type="string"/>
+        <property column="startTime" name="startTime" type="timestamp"/>
+        <property column="endTime" name="endTime" type="timestamp"/>
+        <property column="timeTakenInMS" name="timeTakenInMS" type="long"/>
+    </class>
+</hibernate-mapping>

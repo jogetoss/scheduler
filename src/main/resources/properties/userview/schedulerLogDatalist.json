@@ -1,0 +1,41 @@
+{
+    "id": "list_schedulerLog",
+    "name": "List - schedulerLog",
+    "pageSize": 0,
+    "order": "",
+    "orderBy": "",
+    "showPageSizeSelector": "true",
+    "pageSizeSelectorOptions": "10,20,30,40,50,100",
+    "buttonPosition": "bottomLeft",
+    "checkboxPosition": "no",
+    "useSession": "false",
+    "actions": [],
+    "rowActions": [],
+    "filters": [],
+    "binder": {
+        "className": "",
+        "properties": {}
+    },
+    "columns": [
+        {
+            "id": "column_0",
+            "label": "@@userview.scheduler.startTime@@",
+            "name": "startTime"
+        },
+        {
+            "id": "column_1",
+            "label": "@@userview.scheduler.endTime@@",
+            "name": "endTime"
+        },
+        {
+            "id": "column_2",
+            "label": "@@userview.scheduler.errorMessage@@",
+            "name": "message"
+        },
+        {
+            "id": "column_3",
+            "label": "@@userview.scheduler.timeTaken@@",
+            "name": "timeTakenInMS"
+        }
+    ]
+}
