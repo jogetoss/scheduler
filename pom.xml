@@ -4,7 +4,7 @@
     <groupId>org.joget.scheduler</groupId>
     <artifactId>scheduler</artifactId>
     <packaging>bundle</packaging>
-    <version>6.0.0</version>
+    <version>6.0.1</version>
     <name>scheduler</name>
     <url>http://www.joget.org</url>
     <build>
@@ -93,17 +93,17 @@
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz</artifactId>
-            <version>2.2.3</version>
+            <version>2.3.2</version>
         </dependency>
         <dependency>
             <groupId>org.quartz-scheduler</groupId>
             <artifactId>quartz-jobs</artifactId>
-            <version>2.2.3</version>
+            <version>2.3.2</version>
         </dependency>   
         <dependency>
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
-            <version>1.6</version>
+            <version>1.9.4</version>
         </dependency>
         <dependency>
             <groupId>commons-logging</groupId>

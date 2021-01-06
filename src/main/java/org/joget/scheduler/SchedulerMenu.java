@@ -85,7 +85,7 @@ public class SchedulerMenu extends UserviewMenu implements PluginWebSupport {
     }
 
     public String getVersion() {
-        return "6.0.0";
+        return "6.0.1";
     }
 
     public String getLabel() {
