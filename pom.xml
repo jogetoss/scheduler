@@ -4,7 +4,7 @@
     <groupId>org.joget.scheduler</groupId>
     <artifactId>scheduler</artifactId>
     <packaging>bundle</packaging>
-    <version>6.0.1</version>
+    <version>8.0.0</version>
     <name>scheduler</name>
     <url>http://www.joget.org</url>
     <build>
@@ -81,7 +81,13 @@
         <dependency>
             <groupId>org.joget</groupId>
             <artifactId>wflow-core</artifactId>
-            <version>6.0-SNAPSHOT</version>
+            <version>8.0-SNAPSHOT</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>javax.servlet</groupId>
+                    <artifactId>javax.servlet-api</artifactId>
+                </exclusion>
+            </exclusions>
             <scope>provided</scope>
         </dependency>
         <!-- Change plugin specific dependencies here -->
@@ -109,16 +115,6 @@
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
             <version>1.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.3.20.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>4.3.11.Final</version>
         </dependency>
         <!-- End change plugin specific dependencies here -->
     </dependencies>

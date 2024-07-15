@@ -85,18 +85,20 @@
         {
             "id": "column_0",
             "label": "@@userview.scheduler.jobName@@",
-            "name": "name"
+            "name": "name",
+            "sortable": "true"
         },
         {
             "id": "column_1",
             "label": "@@userview.scheduler.cron@@",
-            "name": "trigger"
+            "name": "trigger",
+            "sortable": "true"
         },
         {
             "id": "column_3",
             "name": "appId",
             "label": "@@userview.scheduler.app@@",
-            "sortable": "false",
+            "sortable": "true",
             "hidden": "false",
             "exclude_export": "",
             "width": "",
@@ -125,7 +127,7 @@
             "id": "column_2",
             "name": "pluginClass",
             "label": "@@userview.scheduler.plugin@@",
-            "sortable": "false",
+            "sortable": "true",
             "hidden": "false",
             "exclude_export": "",
             "width": "",
@@ -153,7 +155,8 @@
         {
             "id": "column_4",
             "label": "@@userview.scheduler.nextRunTime@@",
-            "name": "nextFireTime"
+            "name": "nextFireTime",
+            "sortable": "true"
         }
     ]
 }

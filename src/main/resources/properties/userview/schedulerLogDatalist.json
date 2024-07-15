@@ -20,22 +20,26 @@
         {
             "id": "column_0",
             "label": "@@userview.scheduler.startTime@@",
-            "name": "startTime"
+            "name": "startTime",
+            "sortable": "true"
         },
         {
             "id": "column_1",
             "label": "@@userview.scheduler.endTime@@",
-            "name": "endTime"
+            "name": "endTime",
+            "sortable": "true"
         },
         {
             "id": "column_2",
             "label": "@@userview.scheduler.errorMessage@@",
-            "name": "message"
+            "name": "message",
+            "sortable": "true"
         },
         {
             "id": "column_3",
             "label": "@@userview.scheduler.timeTaken@@",
-            "name": "timeTakenInMS"
+            "name": "timeTakenInMS",
+            "sortable": "true"
         }
     ]
 }

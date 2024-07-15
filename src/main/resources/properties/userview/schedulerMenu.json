@@ -1,210 +1,227 @@
-[{
-    title : '@@userview.scheduler.editSchedulerMenu@@',
-    properties : [{
-        name : 'id',
-        label : 'ID',
-        type : 'hidden'
+[
+    {
+       "title":"@@userview.scheduler.editSchedulerMenu@@",
+       "properties":[
+          {
+             "name":"id",
+             "label":"ID",
+             "type":"hidden"
+          },
+          {
+             "name":"customId",
+             "label":"@@userview.crudmenu.customId@@",
+             "type":"textfield",
+             "regex_validation":"^[a-zA-Z0-9_]+$",
+             "validation_message":"@@userview.crudmenu.invalidId@@"
+          },
+          {
+             "name":"label",
+             "label":"@@userview.crudmenu.label@@",
+             "type":"textfield",
+             "required":"True",
+             "value":"@@userview.scheduler.label@@"
+          }
+       ]
     },
     {
-        name : 'customId',
-        label : '@@userview.crudmenu.customId@@',
-        type : 'textfield',
-        regex_validation : '^[a-zA-Z0-9_]+$',
-        validation_message : '@@userview.crudmenu.invalidId@@'
-    },
-    {
-        name : 'label',
-        label : '@@userview.crudmenu.label@@',
-        type : 'textfield',
-        required : 'True',
-        value : '@@userview.scheduler.label@@'
-    }]
-},
-{
-    title : '@@form.ajaxsubform.ui@@',
-    properties : [{
-        name : 'dateDisplayFormat',
-        label : '@@userview.taskDelegation.dateDisplayFormat@@',
-        type : 'textfield'
-    },
-    {
-        label : '@@userview.crudmenu.ui.list@@',
-        type : 'header'
-    },
-    {
-        name : 'buttonPosition',
-        label : '@@userview.crudmenu.buttonPosition@@',
-        type : 'selectbox',
-        value : 'bottomLeft',
-        options : [{
-            value : 'topLeft',
-            label : '@@userview.crudmenu.buttonPosition.topLeft@@'
-        },
-        {
-            value : 'topRight',
-            label : '@@userview.crudmenu.buttonPosition.topRight@@'
-        },
-        {
-            value : 'bottomLeft',
-            label : '@@userview.crudmenu.buttonPosition.bottomLeft@@'
-        },
-        {
-            value : 'bottomRight',
-            label : '@@userview.crudmenu.buttonPosition.bottomRight@@'
-        },
-        {
-            value : 'bothLeft',
-            label : '@@userview.crudmenu.buttonPosition.bothLeft@@'
-        },
-        {
-            value : 'bothRight',
-            label : '@@userview.crudmenu.buttonPosition.bothRight@@'
-        }]
-    },
-    {
-        name : 'selectionType',
-        label : '@@userview.crudmenu.selectionType@@',
-        type : 'selectbox',
-        value : 'multiple',
-        options : [{
-            value : 'multiple',
-            label : '@@userview.crudmenu.selectionType.multiple@@'
-        },{
-            value : 'single',
-            label : '@@userview.crudmenu.selectionType.single@@'
-        }]
-    },
-    {
-        name : 'checkboxPosition',
-        label : '@@userview.crudmenu.checkboxPosition@@',
-        type : 'selectbox',
-        value : 'left',
-        options : [{
-            value : 'left',
-            label : '@@userview.crudmenu.checkboxPosition.left@@'
-        },
-        {
-            value : 'right',
-            label : '@@userview.crudmenu.checkboxPosition.right@@'
-        },
-        {
-            value : 'both',
-            label : '@@userview.crudmenu.checkboxPosition.both@@'
-        },
-        {
-            value : 'no',
-            label : '@@userview.crudmenu.checkboxPosition.no@@'
-        }]
-    },
-    {
-        name : 'list-newButtonLabel',
-        label : '@@userview.crudmenu.newRecordButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'list-editLinkLabel',
-        label : '@@userview.crudmenu.editLinkLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'list-deleteButtonLabel',
-        label : '@@userview.crudmenu.deleteButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'list-customHeader',
-        label : '@@userview.crudmenu.customHeader@@',
-        type : 'codeeditor',
-        mode : 'html'
-    },
-    {
-        name : 'list-customFooter',
-        label : '@@userview.crudmenu.customFooter@@',
-        type : 'codeeditor',
-        mode : 'html'
-    },
-    {
-        label : '@@userview.crudmenu.ui.add@@',
-        type : 'header'
-    },
-    {
-        name : 'add-cancelButtonLabel',
-        label : '@@userview.crudmenu.cancelButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'add-saveButtonLabel',
-        label : '@@userview.crudmenu.saveButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'add-messageShowAfterComplete',
-        label : '@@userview.crudmenu.messageShownAfterSaved@@',
-        type : 'textarea',
-        cols : '60',
-        rows : '3'
-    },
-    {
-        name : 'add-customHeader',
-        label : '@@userview.crudmenu.customHeader@@',
-        type : 'codeeditor',
-        mode : 'html'
-    },
-    {
-        name : 'add-customFooter',
-        label : '@@userview.crudmenu.customFooter@@',
-        type : 'codeeditor',
-        mode : 'html'
-    },
-    {
-        label : '@@userview.crudmenu.ui.edit@@',
-        type : 'header'
-    },
-    {
-        name : 'edit-readonly',
-        label : '@@userview.crudmenu.readonly@@',
-        type : 'checkbox',
-        options : [{
-            value : 'yes',
-            label : ''
-        }]
-    },
-    {
-        name : 'edit-readonlyLabel',
-        label : '@@userview.crudmenu.readonlyLabel@@',
-        type : 'checkbox',
-        options : [{
-            value : 'true',
-            label : ''
-        }]
-    },
-    {
-        name : 'edit-backButtonLabel',
-        label : '@@userview.crudmenu.backButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'edit-saveButtonLabel',
-        label : '@@userview.crudmenu.saveButtonLabel@@',
-        type : 'textfield'
-    },
-    {
-        name : 'edit-messageShowAfterComplete',
-        label : '@@userview.crudmenu.messageShownAfterSaved@@',
-        type : 'textarea',
-        cols : '60',
-        rows : '3'
-    },
-    {
-        name : 'edit-customHeader',
-        label : '@@userview.crudmenu.customHeader@@',
-        type : 'codeeditor',
-        mode : 'html'
-    },
-    {
-        name : 'edit-customFooter',
-        label : '@@userview.crudmenu.customFooter@@',
-        type : 'codeeditor',
-        mode : 'html'
-    }]
-}]
+       "title":"@@form.ajaxsubform.ui@@",
+       "properties":[
+          {
+             "name":"dateDisplayFormat",
+             "label":"@@userview.taskDelegation.dateDisplayFormat@@",
+             "type":"textfield"
+          },
+          {
+             "label":"@@userview.crudmenu.ui.list@@",
+             "type":"header"
+          },
+          {
+             "name":"buttonPosition",
+             "label":"@@userview.crudmenu.buttonPosition@@",
+             "type":"selectbox",
+             "value":"bottomLeft",
+             "options":[
+                {
+                   "value":"topLeft",
+                   "label":"@@userview.crudmenu.buttonPosition.topLeft@@"
+                },
+                {
+                   "value":"topRight",
+                   "label":"@@userview.crudmenu.buttonPosition.topRight@@"
+                },
+                {
+                   "value":"bottomLeft",
+                   "label":"@@userview.crudmenu.buttonPosition.bottomLeft@@"
+                },
+                {
+                   "value":"bottomRight",
+                   "label":"@@userview.crudmenu.buttonPosition.bottomRight@@"
+                },
+                {
+                   "value":"bothLeft",
+                   "label":"@@userview.crudmenu.buttonPosition.bothLeft@@"
+                },
+                {
+                   "value":"bothRight",
+                   "label":"@@userview.crudmenu.buttonPosition.bothRight@@"
+                }
+             ]
+          },
+          {
+             "name":"selectionType",
+             "label":"@@userview.crudmenu.selectionType@@",
+             "type":"selectbox",
+             "value":"multiple",
+             "options":[
+                {
+                   "value":"multiple",
+                   "label":"@@userview.crudmenu.selectionType.multiple@@"
+                },
+                {
+                   "value":"single",
+                   "label":"@@userview.crudmenu.selectionType.single@@"
+                }
+             ]
+          },
+          {
+             "name":"checkboxPosition",
+             "label":"@@userview.crudmenu.checkboxPosition@@",
+             "type":"selectbox",
+             "value":"left",
+             "options":[
+                {
+                   "value":"left",
+                   "label":"@@userview.crudmenu.checkboxPosition.left@@"
+                },
+                {
+                   "value":"right",
+                   "label":"@@userview.crudmenu.checkboxPosition.right@@"
+                },
+                {
+                   "value":"both",
+                   "label":"@@userview.crudmenu.checkboxPosition.both@@"
+                },
+                {
+                   "value":"no",
+                   "label":"@@userview.crudmenu.checkboxPosition.no@@"
+                }
+             ]
+          },
+          {
+             "name":"list-newButtonLabel",
+             "label":"@@userview.crudmenu.newRecordButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"list-editLinkLabel",
+             "label":"@@userview.crudmenu.editLinkLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"list-deleteButtonLabel",
+             "label":"@@userview.crudmenu.deleteButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"list-customHeader",
+             "label":"@@userview.crudmenu.customHeader@@",
+             "type":"codeeditor",
+             "mode":"html"
+          },
+          {
+             "name":"list-customFooter",
+             "label":"@@userview.crudmenu.customFooter@@",
+             "type":"codeeditor",
+             "mode":"html"
+          },
+          {
+             "label":"@@userview.crudmenu.ui.add@@",
+             "type":"header"
+          },
+          {
+             "name":"add-cancelButtonLabel",
+             "label":"@@userview.crudmenu.cancelButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"add-saveButtonLabel",
+             "label":"@@userview.crudmenu.saveButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"add-messageShowAfterComplete",
+             "label":"@@userview.crudmenu.messageShownAfterSaved@@",
+             "type":"textarea",
+             "cols":"60",
+             "rows":"3"
+          },
+          {
+             "name":"add-customHeader",
+             "label":"@@userview.crudmenu.customHeader@@",
+             "type":"codeeditor",
+             "mode":"html"
+          },
+          {
+             "name":"add-customFooter",
+             "label":"@@userview.crudmenu.customFooter@@",
+             "type":"codeeditor",
+             "mode":"html"
+          },
+          {
+             "label":"@@userview.crudmenu.ui.edit@@",
+             "type":"header"
+          },
+          {
+             "name":"edit-readonly",
+             "label":"@@userview.crudmenu.readonly@@",
+             "type":"checkbox",
+             "options":[
+                {
+                   "value":"yes",
+                   "label":""
+                }
+             ]
+          },
+          {
+             "name":"edit-readonlyLabel",
+             "label":"@@userview.crudmenu.readonlyLabel@@",
+             "type":"checkbox",
+             "options":[
+                {
+                   "value":"true",
+                   "label":""
+                }
+             ]
+          },
+          {
+             "name":"edit-backButtonLabel",
+             "label":"@@userview.crudmenu.backButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"edit-saveButtonLabel",
+             "label":"@@userview.crudmenu.saveButtonLabel@@",
+             "type":"textfield"
+          },
+          {
+             "name":"edit-messageShowAfterComplete",
+             "label":"@@userview.crudmenu.messageShownAfterSaved@@",
+             "type":"textarea",
+             "cols":"60",
+             "rows":"3"
+          },
+          {
+             "name":"edit-customHeader",
+             "label":"@@userview.crudmenu.customHeader@@",
+             "type":"codeeditor",
+             "mode":"html"
+          },
+          {
+             "name":"edit-customFooter",
+             "label":"@@userview.crudmenu.customFooter@@",
+             "type":"codeeditor",
+             "mode":"html"
+          }
+       ]
+    }
+ ]
