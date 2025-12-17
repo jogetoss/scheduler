@@ -37,6 +37,7 @@
                                         "type": ""
                                     }
                                 },
+                                "requiredSanitize": "true",
                                 "value": "",
                                 "label": "@@userview.scheduler.jobName@@",
                                 "readonly": "",
@@ -63,6 +64,7 @@
                                         "type": ""
                                     }
                                 },
+                                "requiredSanitize": "true",
                                 "value": "",
                                 "label": "@@userview.scheduler.cron@@",
                                 "readonly": "",
@@ -164,7 +166,8 @@
                                 "id": "field6",
                                 "autoPopulate": "",
                                 "value": "<a id=\"configPlugin\" class=\"button btn\">@@userview.scheduler.configPlugin@@</a>\n<script>\nwindow.updateProps = function(props) {\n    FormUtil.getField(\"pluginProperties\").val(props);\n    JPopup.hide(\"schedulerMenu\");\n}\n  var url = '%s';\n    function configPlugin() {\n        var pluginClass = FormUtil.getValue(\"pluginClass\");\n        var pluginProp = FormUtil.getValue(\"pluginProperties\");\n        var appId = FormUtil.getValue(\"applicationId\");\n        if (pluginClass !== \"\" && appId !== \"\") {\n            JPopup.show(\"schedulerMenu\", url, {\n                \"pluginClass\": pluginClass, \n                \"pluginProp\": pluginProp, \n                \"applicationId\": appId, \n                \"action\":\"config\"\n            }, '', '90%%', '90%%', 'post');\n        } else {\n            alert(\"@@userview.scheduler.pleaseSelect@@\");\n        }\n    }\n    $(document).ready(function(){\n        $(\"#configPlugin\").on(\"click\", function(){\n            configPlugin();\n            return false;\n        })\n    });\n</script>",
-                                "label": " "
+                                "label": " ",
+                                "requiredSanitize": "true"
                             }
                         }
                     ],
