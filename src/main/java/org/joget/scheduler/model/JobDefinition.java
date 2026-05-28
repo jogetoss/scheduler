@@ -11,6 +11,7 @@ public class JobDefinition {
     private String trigger;
     private String state;
     private Date nextFireTime;
+    private Boolean enabled = Boolean.TRUE;
 
     public String getId() {
         return id;
@@ -66,5 +67,13 @@ public class JobDefinition {
 
     public void setNextFireTime(Date nextFireTime) {
         this.nextFireTime = nextFireTime;
+    }
+
+    public boolean isEnabled() {
+        return enabled == null || enabled;
+    }
+
+    public void setEnabled(Boolean enabled) {
+        this.enabled = enabled;
     }
 }
