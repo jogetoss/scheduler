@@ -14,9 +14,9 @@ import java.util.Map;
 import java.util.Properties;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.joget.apps.app.dao.PluginDefaultPropertiesDao;
 import org.joget.apps.app.model.AppDefinition;
 import org.joget.apps.app.model.PluginDefaultProperties;
@@ -214,6 +214,23 @@ public class SchedulerMenu extends UserviewMenu implements PluginWebSupport {
 
                 Collection<DataListAction> actionList = new ArrayList<DataListAction>();
                 actionList.addAll(Arrays.asList(cacheDataList.getActions()));
+
+                DataListAction enableAction = new SchedulerToggleAction();
+                Map enableProperties = new HashMap();
+                enableProperties.put("id", "enable_job");
+                enableProperties.put("label", AppPluginUtil.getMessage("userview.scheduler.enable", getClassName(), MESSAGE_PATH));
+                enableProperties.put("mode", "enable");
+                enableAction.setProperties(enableProperties);
+                actionList.add(enableAction);
+
+                DataListAction disableAction = new SchedulerToggleAction();
+                Map disableProperties = new HashMap();
+                disableProperties.put("id", "disable_job");
+                disableProperties.put("label", AppPluginUtil.getMessage("userview.scheduler.disable", getClassName(), MESSAGE_PATH));
+                disableProperties.put("mode", "disable");
+                disableAction.setProperties(disableProperties);
+                actionList.add(disableAction);
+
                 DataListAction action = new SchedulerDeleteAction();
                 String deleteLabel = (getPropertyString("list-deleteButtonLabel") != null && getPropertyString("list-deleteButtonLabel").trim().length() > 0) ? getPropertyString("list-deleteButtonLabel") : ResourceBundleUtil.getMessage("general.method.label.delete");
                 Map properties = new HashMap();
