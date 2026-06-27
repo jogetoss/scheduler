@@ -157,12 +157,6 @@
             "label": "@@userview.scheduler.nextRunTime@@",
             "name": "nextFireTime",
             "sortable": "true"
-        },
-        {
-            "id": "column_5",
-            "label": "@@userview.scheduler.status@@",
-            "name": "enabled",
-            "sortable": "true"
         }
     ]
 }
