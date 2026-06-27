@@ -2,7 +2,7 @@ package org.joget.scheduler;
 
 import java.util.Date;
 import java.util.Map;
-import jakarta.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequest;
 import org.joget.apps.app.model.AppDefinition;
 import org.joget.apps.app.service.AppPluginUtil;
 import org.joget.apps.app.service.AppService;
