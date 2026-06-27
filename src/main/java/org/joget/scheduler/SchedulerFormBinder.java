@@ -79,22 +79,30 @@ public class SchedulerFormBinder extends FormBinder implements FormLoadBinder, F
                 return rows;
             }
             
+            boolean wasEnabled = true;
             if (row.getId() != null) {
                 jobDefinition = jobDefinitionDao.get(row.getId());
+                if (jobDefinition != null) {
+                    wasEnabled = jobDefinition.isEnabled();
+                }
             }
             if (jobDefinition == null) {
                 jobDefinition = new JobDefinition();
                 jobDefinition.setId(UuidGenerator.getInstance().getUuid());
             }
-            
+
             jobDefinition.setAppId(row.getProperty("applicationId"));
             jobDefinition.setName(row.getProperty("name"));
             jobDefinition.setPluginClass(row.getProperty("pluginClass"));
             jobDefinition.setPluginProperties(PropertyUtil.propertiesJsonStoreProcessing(jobDefinition.getPluginProperties(), row.getProperty("pluginProperties")));
             jobDefinition.setTrigger(row.getProperty("trigger"));
-            
+
             SchedulerUtil.scheduleJob(jobDefinition);
             if (jobDefinition.getNextFireTime() != null) {
+                if (!wasEnabled) {
+                    jobDefinition.setEnabled(false);
+                    SchedulerUtil.pauseJob(jobDefinition);
+                }
                 jobDefinitionDao.save(jobDefinition);
             } else {
                 formData.addFormError("trigger", AppPluginUtil.getMessage("userview.scheduler.invalidSyntax", SchedulerMenu.class.getName(), SchedulerMenu.MESSAGE_PATH));

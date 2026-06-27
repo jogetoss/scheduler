@@ -5,18 +5,17 @@ import org.joget.apps.datalist.model.DataList;
 import org.joget.apps.datalist.model.DataListActionDefault;
 import org.joget.apps.datalist.model.DataListActionResult;
 import org.joget.scheduler.dao.JobDefinitionDao;
-import org.joget.scheduler.dao.JobDefinitionLogDao;
 import org.joget.scheduler.model.JobDefinition;
 import org.joget.workflow.util.WorkflowUtil;
 
-public class SchedulerDeleteAction extends DataListActionDefault {
+public class SchedulerToggleAction extends DataListActionDefault {
 
     public String getName() {
-        return "SchedulerDeleteAction";
+        return "SchedulerToggleAction";
     }
 
     public String getVersion() {
-        return "6.0.0";
+        return "8.0.0";
     }
 
     public String getDescription() {
@@ -24,11 +23,11 @@ public class SchedulerDeleteAction extends DataListActionDefault {
     }
 
     public String getLinkLabel() {
-        return getPropertyString("label"); //get label from configured properties options
+        return getPropertyString("label");
     }
 
     public String getHref() {
-        return getPropertyString("href"); //Let system to handle to post to the same page
+        return getPropertyString("href");
     }
 
     public String getTarget() {
@@ -36,45 +35,51 @@ public class SchedulerDeleteAction extends DataListActionDefault {
     }
 
     public String getHrefParam() {
-        return getPropertyString("hrefParam");  //Let system to set the parameter to the checkbox name
+        return getPropertyString("hrefParam");
     }
 
     public String getHrefColumn() {
-        return getPropertyString("hrefColumn"); //Let system to set the primary key column of the binder
+        return getPropertyString("hrefColumn");
     }
 
     public String getConfirmation() {
-        return getPropertyString("confirmation"); //get confirmation from configured properties options
+        return getPropertyString("confirmation");
     }
 
     public DataListActionResult executeAction(DataList dataList, String[] rowKeys) {
         DataListActionResult result = new DataListActionResult();
         result.setType(DataListActionResult.TYPE_REDIRECT);
         result.setUrl("REFERER");
+
         
-        // only allow POST
         HttpServletRequest request = WorkflowUtil.getHttpServletRequest();
         if (request != null && !"POST".equalsIgnoreCase(request.getMethod())) {
             return result;
         }
-        
-        // check for submited rows
+
         if (rowKeys != null && rowKeys.length > 0) {
+            boolean enable = "enable".equals(getPropertyString("mode"));
             JobDefinitionDao jobDefinitionDao = (JobDefinitionDao) AppContext.getInstance().getAppContext().getBean("jobDefinitionDao");
-            JobDefinitionLogDao jobDefinitionLogDao = (JobDefinitionLogDao) AppContext.getInstance().getAppContext().getBean("jobDefinitionLogDao");
-            for (String r : rowKeys) {
-                JobDefinition job = jobDefinitionDao.get(r);
-                SchedulerUtil.deleteJob(job);
-                jobDefinitionLogDao.deleteByJobId(r);
-                jobDefinitionDao.delete(r);
+            for (String id : rowKeys) {
+                JobDefinition job = jobDefinitionDao.get(id);
+                if (job != null) {
+                    if (enable) {
+                        job.setEnabled(true);
+                        SchedulerUtil.resumeJob(job);
+                    } else {
+                        job.setEnabled(false);
+                        SchedulerUtil.pauseJob(job);
+                    }
+                    jobDefinitionDao.save(job);
+                }
             }
         }
-        
+
         return result;
     }
 
     public String getLabel() {
-        return "SchedulerDeleteAction";
+        return "SchedulerToggleAction";
     }
 
     public String getClassName() {
