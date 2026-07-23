@@ -157,6 +157,43 @@
             "label": "@@userview.scheduler.nextRunTime@@",
             "name": "nextFireTime",
             "sortable": "true"
+        },
+        {
+            "id": "column_5",
+            "label": "@@userview.scheduler.status@@",
+            "name": "enabled",
+            "sortable": "true",
+            "datalist_type": "column",
+            "renderHtml": "",
+            "hidden": "false",
+            "exclude_export": "",
+            "width": "",
+            "style": "",
+            "alignment": "",
+            "headerAlignment": "",
+            "action": {
+                "className": "",
+                "properties": {}
+            },
+            "format": {
+                "className": "org.joget.plugin.enterprise.OptionsValueFormatter",
+                "properties": {
+                    "options": [
+                        {
+                            "value": "false",
+                            "label": "Disabled"
+                        },
+                        {
+                            "value": "true",
+                            "label": "Enabled"
+                        }
+                    ],
+                    "optionsBinder": {
+                        "className": "",
+                        "properties": {}
+                    }
+                }
+            }
         }
     ]
 }

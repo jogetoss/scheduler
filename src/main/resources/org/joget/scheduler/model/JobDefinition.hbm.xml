@@ -9,5 +9,6 @@
         <property column="pluginProperties" name="pluginProperties" type="text"/>
         <property column="triggerExp" name="trigger" type="string"/>
         <property column="nextFireTime" name="nextFireTime" type="timestamp"/>
+        <property column="enabled" name="enabled" type="java.lang.Boolean"/>
     </class>
 </hibernate-mapping>

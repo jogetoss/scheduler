@@ -79,8 +79,12 @@ public class SchedulerFormBinder extends FormBinder implements FormLoadBinder, F
                 return rows;
             }
             
+            boolean wasEnabled = true;
             if (row.getId() != null) {
                 jobDefinition = jobDefinitionDao.get(row.getId());
+                if (jobDefinition != null) {
+                    wasEnabled = jobDefinition.isEnabled();
+                }
             }
             if (jobDefinition == null) {
                 jobDefinition = new JobDefinition();
@@ -95,6 +99,10 @@ public class SchedulerFormBinder extends FormBinder implements FormLoadBinder, F
             
             SchedulerUtil.scheduleJob(jobDefinition);
             if (jobDefinition.getNextFireTime() != null) {
+                if (!wasEnabled) {
+                    jobDefinition.setEnabled(false);
+                    SchedulerUtil.pauseJob(jobDefinition);
+                }
                 jobDefinitionDao.save(jobDefinition);
             } else {
                 formData.addFormError("trigger", AppPluginUtil.getMessage("userview.scheduler.invalidSyntax", SchedulerMenu.class.getName(), SchedulerMenu.MESSAGE_PATH));

@@ -17,6 +17,7 @@ public class Activator implements BundleActivator {
 
         //Register plugin here
         registrationList.add(context.registerService(SchedulerMenu.class.getName(), new SchedulerMenu(), null));
+        registrationList.add(context.registerService(SchedulerWebService.class.getName(), new SchedulerWebService(), null));
         
         if ((HostManager.isVirtualHostEnabled() && isDefaultProfile()) || !HostManager.isVirtualHostEnabled()) {    
             SchedulerUtil.initSchedulers();

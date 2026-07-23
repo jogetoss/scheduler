@@ -32,6 +32,8 @@ import static org.quartz.JobKey.jobKey;
 import org.quartz.Scheduler;
 import org.quartz.Trigger;
 import static org.quartz.TriggerBuilder.newTrigger;
+import org.quartz.TriggerKey;
+import static org.quartz.TriggerKey.triggerKey;
 import org.quartz.impl.StdSchedulerFactory;
 
 public class SchedulerUtil {
@@ -227,8 +229,11 @@ public class SchedulerUtil {
             try {
                 StdSchedulerFactory sf = new StdSchedulerFactory();
                 Properties properties = new Properties();
+                int threadCount = SchedulerSettings.getConfiguredThreadCount();
+                LogUtil.info(SchedulerUtil.class.getName(), "Starting scheduler " + name
+                        + " with thread count: " + threadCount);
                 properties.put("org.quartz.scheduler.instanceName", name);
-                properties.put("org.quartz.threadPool.threadCount", "5");
+                properties.put("org.quartz.threadPool.threadCount", String.valueOf(threadCount));
                 properties.put("org.quartz.jobStore.class", "org.quartz.impl.jdbcjobstore.JobStoreTX");
                 
                 DataSource ds = (DataSource)AppUtil.getApplicationContext().getBean("setupDataSource");
@@ -248,6 +253,7 @@ public class SchedulerUtil {
                 sf.initialize(properties);
                 scheduler = sf.getScheduler();
                 scheduler.start();
+                SchedulerSettings.setEffectiveThreadCount(threadCount);
                 
                 schedulers.put(name, scheduler);
                 LogUtil.debug(SchedulerUtil.class.getName(), "Scheduler : " + name + " is started");
@@ -296,6 +302,39 @@ public class SchedulerUtil {
             if (jobDefinition != null) {
                 Scheduler s = SchedulerUtil.getInstance();
                 s.deleteJob(jobKey(jobDefinition.getId(), jobDefinition.getAppId()));
+            }
+        } catch (Exception e) {
+            LogUtil.error(SchedulerUtil.class.getName(), e, null);
+        }
+    }
+
+    public static void pauseJob(JobDefinition jobDefinition) {
+        try {
+            if (jobDefinition != null) {
+                Scheduler s = SchedulerUtil.getInstance();
+                TriggerKey key = triggerKey(jobDefinition.getId(), jobDefinition.getAppId());
+                if (s.checkExists(key)) {
+                    s.pauseTrigger(key);
+                }
+                jobDefinition.setNextFireTime(null);
+            }
+        } catch (Exception e) {
+            LogUtil.error(SchedulerUtil.class.getName(), e, null);
+        }
+    }
+
+    public static void resumeJob(JobDefinition jobDefinition) {
+        try {
+            if (jobDefinition != null) {
+                Scheduler s = SchedulerUtil.getInstance();
+                TriggerKey key = triggerKey(jobDefinition.getId(), jobDefinition.getAppId());
+                if (s.checkExists(key)) {
+                    s.resumeTrigger(key);
+                    List<Trigger> triggers = (List<Trigger>) s.getTriggersOfJob(jobKey(jobDefinition.getId(), jobDefinition.getAppId()));
+                    if (!triggers.isEmpty()) {
+                        jobDefinition.setNextFireTime(triggers.iterator().next().getNextFireTime());
+                    }
+                }
             }
         } catch (Exception e) {
             LogUtil.error(SchedulerUtil.class.getName(), e, null);
